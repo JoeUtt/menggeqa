@@ -12,10 +12,10 @@
 hs_err_pid*
 
 # .idea File #
-./.idea
+.idea/
 
 # target Files #
-./target
+target/
 
 # Idea .iml File #
 *.iml
