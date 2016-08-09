@@ -49,16 +49,14 @@ public final class AppiumServiceBuilder
     extends DriverService.Builder<AppiumDriverLocalService, AppiumServiceBuilder> {
 
     /**
-     * The environmental variable used to define
-     * the path to executable appium.js (1.4.x and lower) or
-     * main.js (1.5.x and higher).
+     * 用于定义appium.js (1.4.x and lower)或者
+     * main.js (1.5.x and higher)路径的环境变量
      */
     public static final String APPIUM_PATH = "APPIUM_BINARY_PATH";
 
     /**
-     * The environmental variable used to define
-     * the path to executable NodeJS file (node.exe for WIN and
-     * node for Linux/MacOS X).
+     * 用于定义NodeJS (WIN环境的node.exe和
+     * Linux/MacOS环境的node)路径的环境变量.
      */
     public static final String NODE_PATH = "NODE_BINARY_PATH";
     public static final String DEFAULT_LOCAL_IP_ADDRESS = "0.0.0.0";
@@ -73,9 +71,9 @@ public final class AppiumServiceBuilder
     private static final String BUILD_FOLDER = "build";
     private static final String LIB_FOLDER = "lib";
     private static final String MAIN_JS = "main.js";
-    private static final String ERROR_NODE_NOT_FOUND = "There is no installed nodes! Please "
-            + "install node via NPM (https://www.npmjs.com/package/appium#using-node-js) or download and "
-            + "install Appium app (http://appium.io/downloads.html)";
+    private static final String ERROR_NODE_NOT_FOUND = "未安装nodes! 请 "
+            + "通过NPM安装node (https://www.npmjs.com/package/appium#using-node-js) 或者下载和"
+            + "安装Appium app (http://appium.io/downloads.html)";
     private static final String APPIUM_NODE_MASK =
         File.separator + BUILD_FOLDER
                 + File.separator + LIB_FOLDER
@@ -91,8 +89,9 @@ public final class AppiumServiceBuilder
     private File getNodeJSExecutable;
     private DesiredCapabilities capabilities;
 
-    //The first starting is slow sometimes on some
-    //environment
+    /**
+     * 第一次启动有时会很慢
+     */
     private long startupTimeout = 120;
     private TimeUnit timeUnit = TimeUnit.SECONDS;
 
@@ -105,8 +104,8 @@ public final class AppiumServiceBuilder
 
         if (!node.exists()) {
             throw new InvalidServerInstanceException(
-                "The invalid appium node " + absoluteNodePath + " has been defined",
-                new IOException("The node " + absoluteNodePath + "doesn't exist"));
+                "无效的appium node文件" + absoluteNodePath,
+                new IOException("node文件" + absoluteNodePath + "不存在"));
         }
     }
 
@@ -160,16 +159,16 @@ public final class AppiumServiceBuilder
                 throw new InvalidServerInstanceException(ERROR_NODE_NOT_FOUND,
                     new IOException(errorOutput));
             }
-            //appium servers v1.5.x and higher
+            //appium服务端版本v1.5或者更高
             File result;
             if ((result = new File(defaultAppiumNode, APPIUM_NODE_MASK)).exists()) {
                 return result;
             }
 
             throw new InvalidServerInstanceException(ERROR_NODE_NOT_FOUND, new IOException(
-                "Could not find a file " + APPIUM_NODE_MASK
-                    + " in the "
-                    + defaultAppiumNode + " directory"));
+                "找不到" + APPIUM_NODE_MASK
+                    + "文件,在"
+                    + defaultAppiumNode + "目录中"));
         } finally {
             commandLine.destroy();
         }
@@ -198,7 +197,7 @@ public final class AppiumServiceBuilder
             }
             commandLine.execute();
         } catch (Throwable t) {
-            throw new InvalidNodeJSInstance("Node.js is not installed!", t);
+            throw new InvalidNodeJSInstance("Node.js未安装!", t);
         }
 
 

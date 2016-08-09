@@ -106,22 +106,10 @@
 
     <developers>
         <developer>
-            <email>jonahss@gmail.com</email>
-            <name>Jonah Stiennon</name>
-            <url>https://github.com/jonahss</url>
-            <id>jonahss</id>
-        </developer>
-        <developer>
-            <email>tichomirovsergey@gmail.com</email>
-            <name>Sergey Tikhomirov</name>
-            <url>https://github.com/TikhomirovSergey</url>
-            <id>TikhomirovSergey</id>
-        </developer>
-        <developer>
-            <email>srinivasan.sekar1990@gmail.com</email>
-            <name>Srinivasan Sekar</name>
-            <url>https://github.com/SrinivasanTarget</url>
-            <id>SrinivasanTarget</id>
+            <email>joe.shi@menggetech.com</email>
+            <name>Joe Shi</name>
+            <url>https://github.com/joeutt</url>
+            <id>joeutt</id>
         </developer>
     </developers>
 
