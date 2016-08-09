@@ -75,7 +75,7 @@ public final class AppiumDriverLocalService extends DriverService {
     }
 
     /**
-     * @return The base URL for the managed appium server.
+     * @return 返回appium服务端地址.
      */
     @Override public URL getUrl() {
         try {
@@ -115,15 +115,17 @@ public final class AppiumDriverLocalService extends DriverService {
             new UrlChecker().waitUntilAvailable(time, timeUnit, status);
         } catch (MalformedURLException e) {
             throw new RuntimeException(
-                "There is something wrong with the URL " + url.toString().toString() + "/status");
+                "URL出错 " + url.toString().toString() + "/status");
         }
     }
 
     /**
-     * Starts the defined appium server
+     * 启动appium服务端
+     *
      *
      * @throws AppiumServerHasNotBeenStartedLocallyException
-     * If an error occurs while spawning the child process.
+     * 如果在产生子进程中发生错误,则抛此异常
+     *
      * @see #stop()
      */
     public void start() throws AppiumServerHasNotBeenStartedLocallyException {
@@ -142,9 +144,9 @@ public final class AppiumDriverLocalService extends DriverService {
                 ping(startupTimeout, timeUnit);
             } catch (Throwable e) {
                 destroyProcess();
-                String msgTxt = "The local appium server has not been started. "
-                    + "The given Node.js executable: " + this.nodeJSExec.getAbsolutePath()
-                    + " Arguments: " + nodeJSArgs.toString() + " " + "\n";
+                String msgTxt = "本地appium服务尚未启动. "
+                    + "Node.js路径: " + this.nodeJSExec.getAbsolutePath()
+                    + " 参数: " + nodeJSArgs.toString() + " " + "\n";
                 if (process != null) {
                     String processStream = process.getStdOut();
                     if (!StringUtils.isBlank(processStream)) {
@@ -160,8 +162,7 @@ public final class AppiumDriverLocalService extends DriverService {
     }
 
     /**
-     * Stops this service is it is currently running. This method will attempt to block until the
-     * server has been fully shutdown.
+     * 停止正在运行的服务. 此方法会一直去尝试停止服务,直到服务端被完全关掉
      *
      * @see #start()
      */
@@ -184,8 +185,7 @@ public final class AppiumDriverLocalService extends DriverService {
     }
 
     /**
-     * @return String logs if the server has been run.
-     *     null is returned otherwise.
+     * @return 如果服务端启动成功,开始记录log. 否则返回null.
      */
     public String getStdOut() {
         if (process != null) {
@@ -196,22 +196,20 @@ public final class AppiumDriverLocalService extends DriverService {
     }
 
     /**
-     * Adds other output stream which should accept server output data
-     * @param outputStream is an instance of {@link java.io.OutputStream}
-     *                     that is ready to accept server output
+     * 增加其他输出流用于接受服务端输出数据
+     * @param outputStream {@link java.io.OutputStream}的实例,它被用于准备接受服务端的输出数据.
      */
     public void addOutPutStream(OutputStream outputStream) {
-        checkNotNull(outputStream, "outputStream parameter is NULL!");
+        checkNotNull(outputStream, "outputStream参数为NULL!");
         stream.add(outputStream);
     }
 
     /**
-     * Adds other output streams which should accept server output data
-     * @param outputStreams is a list of additional {@link java.io.OutputStream}
-     *                      that are ready to accept server output
+     * 增加其他输出流用于接受服务端输出数据
+     * @param outputStreams {@link java.io.OutputStream}的集合,它被用于准备接受服务端的输出数据
      */
     public void addOutPutStreams(List<OutputStream> outputStreams) {
-        checkNotNull(outputStreams, "outputStreams parameter is NULL!");
+        checkNotNull(outputStreams, "outputStream参数为NULL!");
         for (OutputStream stream : outputStreams) {
             addOutPutStream(stream);
         }
