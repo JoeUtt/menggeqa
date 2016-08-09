@@ -311,7 +311,6 @@ public abstract class AppiumDriver<T extends WebElement>
     @Override public byte[] pullFile(String remotePath) {
         Response response = execute(PULL_FILE, ImmutableMap.of("path", remotePath));
         String base64String = response.getValue().toString();
-
         return DatatypeConverter.parseBase64Binary(base64String);
     }
 
