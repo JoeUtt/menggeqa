@@ -18,9 +18,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.appium</groupId>
-    <artifactId>java-client</artifactId>
-    <version>4.1.0</version>
+    <groupId>com.MenggeTech</groupId>
+    <artifactId>appium-java</artifactId>
+    <version>0.0.1</version>
+
     <dependencies>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -83,9 +84,9 @@
         </dependency>
     </dependencies>
     <packaging>jar</packaging>
-    <name>java-client</name>
-    <description>Java client for Appium Mobile Webdriver</description>
-    <url>http://appium.io</url>
+    <name>appium-java</name>
+    <description>Java client for Appium Mobile Webdriver for Mengge Tech</description>
+    <url>http://www.menggetech.com</url>
 
     <licenses>
         <license>
@@ -96,11 +97,11 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/appium/java-client</url>
-        <connection>scm:git:ssh://git@github.com/appium/java-client.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/appium/java-client.git
+        <url>https://github.com/JoeUtt/menggeqa</url>
+        <connection>scm:git:ssh://git@github.com/JoeUtt/menggeqa.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/JoeUtt/menggeqa.git
         </developerConnection>
-        <tag>4.1.0</tag>
+        <tag>0.0.1</tag>
     </scm>
 
     <developers>
