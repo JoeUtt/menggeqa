@@ -20,4 +20,6 @@ target/
 # Idea .iml File #
 *.iml
 
-
+# apk and ipa File #
+*.apk
+*.ipa
