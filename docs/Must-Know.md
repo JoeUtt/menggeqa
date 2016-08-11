@@ -20,11 +20,7 @@
 **Eclipse IDE** 
 `Preferences -> Java -> Code Style -> Formatter -> Import -> eclipse-java-google-style.xml -> Apply`
 
-* Reformat后提交
-
-## 代码风格 ##
-
-请保持一致的代码风格
+* 编译时会检查, 不符合则编译不过
 
 ### 如何执行代码风格检查 
 
