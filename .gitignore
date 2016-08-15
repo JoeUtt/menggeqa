@@ -23,3 +23,5 @@ target/
 # apk and ipa File #
 *.apk
 *.ipa
+*.zip
+
