@@ -14,59 +14,61 @@
  * limitations under the License.
  */
 
-package com.mengge.ios;
+package com.mengge.iosTest;
 
+import com.mengge.MobileBy;
 import com.mengge.MobileElement;
+import com.mengge.ios.IOSDriver;
 import com.mengge.remote.IOSMobileCapabilityType;
 import com.mengge.remote.MobileCapabilityType;
 import com.mengge.service.local.AppiumDriverLocalService;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import java.io.File;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
 
 /**
- * Created by joe.shi on 16/8/15.
+ * Created by joe.shi on 16/8/22.
  */
 public class TestBase {
     private static AppiumDriverLocalService service;
     protected static IOSDriver<MobileElement> driver;
 
-    /**
-     * 初始化
-     */
-    @BeforeClass public static void beforeClass() throws Exception {
+    @BeforeClass
+    public static void beforeClass() throws Exception {
         service = AppiumDriverLocalService.buildDefaultService();
         service.start();
 
         if (service == null || !service.isRunning()) {
-            throw new RuntimeException("Appium服务端未启动!");
+            throw new RuntimeException("Appium服务未启动");
         }
 
         File appDir = new File("src/test");
-        File app = new File(appDir, "TestApp.app.zip");
+        File appName = new File(appDir, "TestApp.app.zip");
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "");
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9.3");
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone Simulator");
-        //sometimes environment has performance problems
+        //capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "");
+        //capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9.3");
+
+        capabilities.setCapability(MobileCapabilityType.APP, appName.getAbsolutePath());
         capabilities.setCapability(IOSMobileCapabilityType.LAUNCH_TIMEOUT, 500000);
-        capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
+
         driver = new IOSDriver<>(service.getUrl(), capabilities);
     }
 
-
-    /**
-     * 结束
-     */
-    @AfterClass public static void afterClass() {
-        if (driver != null) {
-            driver.quit();
-        }
+    @AfterClass
+    public static void afterClass() {
         if (service != null) {
             service.stop();
         }
+
+        /*if (driver != null) {
+            driver.quit();
+        }*/
     }
 }
