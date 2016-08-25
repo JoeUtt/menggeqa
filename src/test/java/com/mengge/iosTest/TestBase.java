@@ -48,14 +48,14 @@ public class TestBase {
             throw new RuntimeException("Appium服务未启动");
         }
 
-        File appDir = new File("src/test");
-        File appName = new File(appDir, "TestApp.app.zip");
+        //File appDir = new File("src/test");
+        //File appName = new File(appDir, "TestApp.app.zip");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone Simulator");
-        //capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "");
+        capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "safari");
         //capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9.3");
 
-        capabilities.setCapability(MobileCapabilityType.APP, appName.getAbsolutePath());
+        //capabilities.setCapability(MobileCapabilityType.APP, "Safari");
         capabilities.setCapability(IOSMobileCapabilityType.LAUNCH_TIMEOUT, 500000);
 
         driver = new IOSDriver<>(service.getUrl(), capabilities);
